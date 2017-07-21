@@ -1,0 +1,42 @@
+.box {
+    margin: 0.15rem 0;
+    padding-left: 0.2rem;
+    border-bottom: 0.025rem solid #eee;
+    border-top: 0.025rem #eee;
+    background-color: #fff;
+    color: #333;
+    font-size: 0.28rem;
+    .box-li {
+        padding: 0.3rem 0;
+        border-bottom: 0.025rem solid #eee;
+        i.iconfont {
+            font-size: 0.32rem;
+            color: #aaa;
+            padding-right: 0.1rem;
+            padding-top: 0.025rem;
+        }
+        .label {
+            display: inline-block;
+            width: 1.4rem;
+        }
+        .enter {
+            width: calc(100% - 1.4rem - 5px);
+            height: 0.4rem;
+            box-sizing: border-box;
+            margin: 0;
+            padding-right: .6rem;
+            border: none;
+            background-color: #fff;
+        }
+    }
+    .box-li:last-child {
+        border-bottom: none;
+    }
+}
+
+.box-img {
+    text-align: center;
+    img {
+        border-radius: 50%;
+    }
+}

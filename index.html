@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>华飞智慧商旅平台</title>
+    <!-- fastclick插件修复zepto击穿事件 -->
+    <script type="text/javascript" src="./plugins/fastclick.min.js"></script>
+    <!-- zepto插件 -->
+    <script type="text/javascript" src="./plugins/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="./plugins/zepto/touch.min.js"></script>
+    <script type="text/javascript" src="./plugins/zepto/event.min.js"></script>
+    <script type="text/javascript" src="./plugins/zepto/ajax.min.js"></script>
+    <script type="text/javascript" src="./plugins/zepto/form.min.js"></script>
+    <!-- 字体库 fa -->
+    <link rel="stylesheet" type="text/css" href="./plugins/fa/css/font-awesome.min.css">
+    <!-- 阿里图库 -->
+    <link rel="stylesheet" type="text/css" href="./plugins/ali/iconfont.css">
+    <!-- 上拉刷新，下拉加载插件 -->
+    <link rel="stylesheet" type="text/css" href="./plugins/dropload-gh-pages/dropload.css">
+    <script type="text/javascript" src="plugins/dropload-gh-pages/dropload.min.js"></script>
+    <!-- swiper 滑动，轮播 -->
+    <link rel="stylesheet" type="text/css" href="./plugins/swiper/css/swiper.min.css">
+    <script type="text/javascript" src="./plugins/swiper/js/swiper.min.js"></script>
+    <!-- 提示框插件 -->
+    <script type="text/javascript" src="./plugins/tiny-alert/js/zepto.alert.js"></script>
+    <link rel="stylesheet" type="text/css" href="./plugins/tiny-alert/css/zepto.alert.css">
+    <!-- 路由器 -->
+    <script type="text/javascript" src="./plugins/director.min.js"></script>
+    <!-- css3动画样式 -->
+    <link rel="stylesheet" type="text/css" href="./plugins/animate/animate.min.css">
+    <!-- 避免微信下拉出现灰色框 -->
+    <script type="text/javascript" src="./plugins/stickForever/stick-forever.min.js"></script>
+    <!-- 自定义样式/插件 -->
+    <script type="text/javascript" src="./dist/template.js?v=201707131447"></script>
+    <link rel="stylesheet" type="text/css" href="./dist/css/dist.min.css?v=201707131447">
+    <script type="text/javascript" src="./dist/js/dist.min.js?v=201707131447"></script>
+</head>
+
+<body>
+    <header class="bg-white">
+        <span class="header-text header-left hf-back hidden"><i class="iconfont icon-left-light "></i><span>返回</span></span>
+        <span class="title black animation-duration">华飞智慧商旅平台</span>
+        <span class="iconfont icon-mark header-icon header-right hidden"></span>
+    </header>
+    <div id="scroll">
+        <div class="template-main animation-duration"></div>
+    </div>
+    <footer class="index-list">
+        <ul>
+            <li data-ele="artTemplate" data-href="#order/order" data-title="华飞智慧商旅平台" class="active">
+                <i class="iconfont icon-calendar"></i>
+                <span>订票、退票/改签</span>
+            </li>
+            <li data-ele="artTemplate" data-href="#flight/flight" data-title="订票">
+                <i class="iconfont icon-like"></i>
+                <span>航班收藏</span>
+            </li>
+            <li data-ele="artTemplate" data-href="#personal/personal" data-title="个人中心">
+                <i class="iconfont icon-my_light"></i>
+                <span>个人中心</span>
+            </li>
+        </ul>
+    </footer>
+    <footer class="searchList hidden">
+        <ul>
+            <li class="active">
+                <span><span>价格低到高</span><i class="fa fa-caret-up active"></i><i class="fa fa-caret-down"></i></span>
+            </li>
+            <li>
+                <span>时间排序</span>
+            </li>
+        </ul>
+    </footer>
+    <script type="text/javascript">
+    StickForever($("body")[0]).stick();
+    hf.init();
+    var routesList = new Array();
+    $("*[data-ele='artTemplate']").each(function() {
+        routesList.push($(this).attr("data-href"));
+    })
+    hf.director(routesList);
+    </script>
+</body>
+
+</html>

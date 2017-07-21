@@ -1,0 +1,36 @@
+#personal-weixin {
+    .title.box-img {
+        box-sizing: border-box;
+        background-color: #fff;
+        height: 2.1rem;
+        padding: 0.29rem;
+        img {
+            box-sizing: border-box;
+            border: 0.04rem solid #fcb30c;
+            height: 1.52rem;
+            width: 1.52rem;
+        }
+    }
+    .box {
+        
+        .box-li {
+            position: relative;
+            .iconfont {
+                padding-right: 0;
+                position: absolute;
+                top: 50%;
+                right: .2rem;
+                transform: translateY(-50%);
+            }
+            .icon-questionfill {
+                color: #fcb30c;
+                font-size: 0.4rem;
+            }
+            select.enter {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+            }
+        }
+    }
+}

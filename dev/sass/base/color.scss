@@ -1,0 +1,68 @@
+$flag: color;
+.black {
+    #{$flag}: #111111;
+}
+
+.white {
+    #{$flag}: #ffffff;
+}
+
+.navy {
+    #{$flag}: #001f3f;
+}
+
+.blue {
+    #{$flag}: #0074D9;
+}
+
+.aqua {
+    #{$flag}: #7FDBFF;
+}
+
+.teal {
+    #{$flag}: #39CCCC;
+}
+
+.olive {
+    #{$flag}: #3D9970;
+}
+
+.green {
+    #{$flag}: #2ECC40;
+}
+
+.yellow {
+    #{$flag}: #FFDC00;
+}
+
+.lime {
+    #{$flag}: #01FF70;
+}
+
+.orange {
+    #{$flag}: #FF851B;
+}
+
+.red {
+    #{$flag}: #FF4136;
+}
+
+.maroon {
+    #{$flag}: #85144b;
+}
+
+.fuchsia {
+    #{$flag}: #F012BE;
+}
+
+.purple {
+    #{$flag}: #B10DC9;
+}
+
+.gray {
+    #{$flag}: #AAAAAA;
+}
+
+.silver {
+    #{$flag}: #DDDDDD;
+}
