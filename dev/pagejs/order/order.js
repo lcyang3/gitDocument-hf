@@ -55,18 +55,37 @@
      * 查询飞机票
      */
     $("body").off("click", "a[data-name='flight-search']").on("click", "a[data-name='flight-search']", function() {
-        $(this).attr("data-title","北京-杭州");
+        $(this).attr("data-title", "北京-杭州");
         hf.appParam.orderSearchParam = {
-            startStation : "北京",
+            startStation: "北京",
             endStation: "杭州",
-            startTime:"2017-07-19",
-            endTime:"2017-07-22"
+            startTime: "2017-07-19",
+            endTime: "2017-07-22"
         }
-        router.on("order/searchList",function(){
+        router.on("order/searchList", function() {
             hf.directorFn("order/searchList");
         });
         hf.forwardFlag = true;
         hf.forward($(this).attr("data-href"));
+    });
+
+    $("body").off("click", "input[data-ele='input'][data-type='time']").on("click", "input[data-ele='input'][data-type='time']", function() {
+        var _self = this;
+        var _id = new Date().getTime();
+        $("body").append(template("base/time", {
+            id: _id
+        }));
+        setTimeout(function() {
+            $("#" + _id).css("top", 0);
+        }, 100)
+    });
+
+    $("body").off("click", ".time-box").on("click", ".time-box", function() {
+        var _self = this;
+        $(this).css("top", "100%");
+        setTimeout(function() {
+            $(_self).remove();
+        }, 800);
     });
 
     hf.appParam.orderCurrItem = _default_content; //保存当前选项夹
