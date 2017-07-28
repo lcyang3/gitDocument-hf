@@ -9,6 +9,7 @@
         <div class="tab-li" data-target="03">
             <span>汽车票</span>
         </div>
+        <div class="flag-active hidden"></div>
     </div>
     <div class="tab-content">
         <div class="tab-content-box hidden" data-target="01">
@@ -17,19 +18,19 @@
             </div>
             <div class="address">
                 <div class="address-item address-start pull-left">
-                    <input type="text" placeholder="出发地点" disabled="true"></input>
+                    <input type="text" placeholder="出发地点" disabled="true" data-ele="input" data-type="address" data-id="startAddress"></input>
                 </div>
                 <i class="iconfont icon-wangfan"></i>
                 <div class="address-item address-end pull-right">
-                    <input type="text" placeholder="到达地点" disabled="true"></input>
+                    <input type="text" placeholder="到达地点" disabled="true" data-ele="input" data-type="address" data-id="endAddress"></input>
                 </div>
             </div>
             <div class="time">
                 <div class="time-item time-start pull-left">
-                    <input type="text" data-ele="input" data-type="time" placeholder="出发时间" disabled="true"></input>
+                    <input type="text" data-ele="input" data-type="time" data-id="startTime" placeholder="去程日期" disabled="true"></input>
                 </div>
                 <div class="time-item time-end pull-right">
-                    <input type="text" data-ele="input" data-type="time" placeholder="返程日期(选填)" disabled="true"></input>
+                    <input type="text" data-ele="input" data-type="time" data-id="endTime" placeholder="返程日期(选填)" disabled="true"></input>
                 </div>
             </div>
             <div style="padding: .3rem .26rem;background-color: #fff;">

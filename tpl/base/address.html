@@ -1,0 +1,62 @@
+<div class="address-box" id="<%= id %>" data-type="<%= _data_id%>">
+    <header class="bg-white" style="top: auto;">
+        <span class="header-text header-left" data-id="close"><i class="iconfont icon-left-light "></i><span>返回</span></span>
+        <% if(_data_id == "startAddress"){%>
+            <span class="title black animation-duration">出发地点</span>
+            <% }else { %>
+                <span class="title black animation-duration">到达地点</span>
+                <% } %>
+    </header>
+    <div class="address-catalog">
+        <P class="address-catalog-item" data-target="GPS">
+            当前
+        </P>
+        <P class="address-catalog-item" data-target="history">
+            历史
+        </P>
+        <P class="address-catalog-item" data-target="hot">
+            热门
+        </P>
+        <% 
+            var _letter_array = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            for(var i = 0 ; i < 29; i++ ){ %>
+            <P class="address-catalog-item" id="<%= _letter_array[i] %>">
+                <%= _letter_array[i] %>
+            </P>
+            <% } %>
+    </div>
+    <div class="main" data-target="GPS">
+        <div class="currAddress" id="currAddress">
+            <span class="text"><%= gps %></span><span class="type">GPS定位</span>
+        </div>
+        <div class="address-item-box history" data-target="history">
+            <%for(var i = 0; i< history.length; i++){%>
+                <div class="history-item">
+                    <%= history[i] %>
+                </div>
+                <%}%>
+        </div>
+        <div class="address-item-box hot" data-target="hot">
+            <%for(var i = 0; i< hot.length; i++){%>
+                <div class="hot-item">
+                    <%= hot[i] %>
+                </div>
+                <%}%>
+        </div>
+        <div class="list">
+            <% for(var i = 0; i< _letter_array.length; i++){ %>
+                <div class="address-item-li" data-target="<%= _letter_array[i]%> ">
+                    <p>
+                        <%= _letter_array[i]%>
+                    </p>
+                    <% for(var j = 0 ; j < _city_domestic.length; j++){
+                    if(_city_domestic[j].group == _letter_array[i]){%>
+                        <div class="list-li">
+                            <%= _city_domestic[j].cityName %>
+                        </div>
+                        <% }} %>
+                </div>
+                <% } %>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,2 @@
-/*TMODJS:{"version":1,"md5":"edb1e0980925d8fee428ff824616e2a8"}*/
+/*TMODJS:{"version":3,"md5":"d52a9bfc2041194d5788851f0635afd5"}*/
 template('personal/info','');

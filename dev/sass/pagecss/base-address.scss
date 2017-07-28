@@ -1,0 +1,42 @@
+.address-box {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 100%;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    animation-fill-mode: both;
+
+    .address-catalog {
+        position: absolute;
+        top: 1rem;
+        right: .1rem;
+        font-size: 0.24rem;
+        text-align: center;
+        color: #007aff;
+        z-index: 999;
+        .address-catalog-item {
+            margin: 0;
+            padding: .08rem 0;
+        }
+    }
+    .main {
+        position: absolute;
+        top: .9rem;
+        bottom: 0;
+        right: 0;
+        width: calc(100% - .2rem);
+        overflow: auto;
+        color: #333;
+        font-size: 0.28rem;
+        .currAddress {
+            padding: .28rem 0;
+            border-bottom: 1px solid #eee;
+            span.type {
+                color: #999;
+                margin-left: 0.1rem;
+            }
+        }
+    }
+}

@@ -1,2 +1,2 @@
-/*TMODJS:{"version":1,"md5":"08587cfc4e8407d208f774f100558138"}*/
+/*TMODJS:{"version":3,"md5":"5dc4fec651a393e6e6f0fe6bb4ef7db9"}*/
 template('base/404','<p>404：未发现资源</p>');

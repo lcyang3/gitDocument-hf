@@ -1,24 +1,29 @@
 #order {
     .tab-list {
-        display: table;
         width: 100%;
         text-align: center;
         color: #333;
         background-color: #fff;
+        position: relative;
+        overflow: hidden;
         .tab-li {
-            display: table-cell;
-            width: 1%;
+            float: left;
+            width: calc(100% / 3);
             box-sizing: border-box;
             span {
                 display: inline-block;
-                padding: 0.3rem 0.2rem;
+                padding: .3rem 0;
                 font-size: 0.32rem;
             }
         }
-        .tab-li.active span {
-            color: #000;
-            padding-bottom: .25rem;
-            border-bottom: 0.04rem solid #ffc400;
+        .flag-active {
+            position: absolute;
+            bottom: 0;
+            height: .04rem;
+            background-color: #ffc400;
+            transition: all .2s;
+            margin: 0 .1rem;
+            width: calc(100%/3 - 0.2rem);
         }
     }
     .content-bar {

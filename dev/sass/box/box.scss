@@ -9,24 +9,31 @@
     .box-li {
         padding: 0.3rem 0;
         border-bottom: 0.025rem solid #eee;
+        position: relative;
         i.iconfont {
             font-size: 0.32rem;
             color: #aaa;
-            padding-right: 0.1rem;
-            padding-top: 0.025rem;
+            position: absolute;
+            right: .1rem;
+            top: 50%;
+            transform: translateY(calc(-50% + .02rem));
         }
         .label {
             display: inline-block;
             width: 1.4rem;
         }
         .enter {
-            width: calc(100% - 1.4rem - 5px);
-            height: 0.4rem;
+            width: calc(100% - 1.5rem);
+            min-height: 0.4rem;
+            line-height: 1em;
             box-sizing: border-box;
             margin: 0;
             padding-right: .6rem;
             border: none;
             background-color: #fff;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
         }
     }
     .box-li:last-child {

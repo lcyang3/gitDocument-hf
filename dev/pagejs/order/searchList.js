@@ -1,10 +1,10 @@
 ;
 (function(hf) {
-    var _dialog = $.dialog();
     var router = hf.router;
     $("header .header-left").removeClass("hidden"); // 隐藏返回按钮
     $("footer.index-list").addClass("hidden"); //底部菜单隐藏
     $("footer.searchList").removeClass("hidden"); // 显示搜索页面底部
+    animate.animateText($("header span.title"), hf.appParam.orderSearchParam.startStation + "-" + hf.appParam.orderSearchParam.endStation, "fadeIn");
     artTemplate.loadTemplate("", "order/searchList", {}); //初始化页面内容
     var startStation = hf.appParam.orderSearchParam.startStation; //起点
     var endStation = hf.appParam.orderSearchParam.endStation;	//终点
@@ -37,5 +37,5 @@
             $(this).find("span span").text("价格低到高");
         } else {}
     });
-    _dialog.close();
+    hf.appConfig.loading.close();
 })(hf);

@@ -51,7 +51,7 @@ gulp.task('image', function() {
 
 // 合并压缩JS文件
 gulp.task('script', function() {
-    gulp.src(['./dev/js/base.js','./dev/js/tools.js','./dev/js/artTemplate.js','./dev/js/animate.js','./dev/js/hf.js'])
+    gulp.src(['./dev/js/base.js', './dev/js/tools.js', './dev/js/artTemplate.js', './dev/js/animate.js', './dev/js/index.js'])
         .pipe(concat('dist.js')) // 合并
         .pipe(rename('dist.min.js')) // 重命名
         .pipe(uglify()) // 压缩
@@ -59,10 +59,20 @@ gulp.task('script', function() {
         .pipe(reload({ stream: true }));
 });
 
+// 合并压缩JS文件 ---  ---  helpers
+gulp.task('helpers', function() {
+    gulp.src(['./dev/js/helpers.js'])
+        .pipe(concat('helpers.js')) // 合并
+        .pipe(rename('helpers.min.js')) // 重命名
+        .pipe(uglify()) // 压缩
+        .pipe(gulp.dest("./dist/"))
+        .pipe(reload({ stream: true }));
+});
+
 // 合并压缩JS文件
 gulp.task('pagejs', function() {
     gulp.src("./dev/pagejs/**/*.js")
-        .pipe(rename({suffix: '.min'})) // 重命名
+        .pipe(rename({ suffix: '.min' })) // 重命名
         .pipe(uglify()) // 压缩
         .pipe(gulp.dest('./dist/pagejs/'))
         .pipe(reload({ stream: true }));
@@ -75,7 +85,8 @@ gulp.task("watch", function() {
     gulp.watch(path.dev.image + '/**/**', ['image']);
     gulp.watch(path.dev.js + '/**/**', ['script']);
     gulp.watch("./dev/pagejs/**/**", ['pagejs']);
+    gulp.watch("./dev/js/helpers.js", ['helpers']);
 });
 
 // 默认任务
-gulp.task("default", ['compass', 'script', 'image', 'pagejs', 'watch']);
+gulp.task("default", ['compass', 'script', 'helpers', 'image', 'pagejs', 'watch']);

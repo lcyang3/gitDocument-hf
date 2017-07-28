@@ -1,3 +1,38 @@
-<div class="time-box" id="{{id}}">
-	aaa
+<div class="time-box" id="<%= id %>" data-type="<%= _data_id%>">
+    <header class="bg-white" style="top: auto;">
+        <span class="header-text header-left" data-id="close"><i class="iconfont icon-left-light "></i><span>返回</span></span>
+        <% if(_data_id == "startTime"){%>
+            <span class="title black animation-duration">去程日期</span>
+            <% }else { %>
+                <span class="title black animation-duration">返程日期</span>
+                <% } %>
+    </header>
+    <div class="weeks">
+        <% for(var i = 0 ; i < 7 ; i++){ %>
+            <div class="weeks-item">
+                <%= ["日","一","二","三","四","五","六"][i] %>
+            </div>
+            <% } %>
+    </div>
+    <div class="month-box">
+        <% for(var j = 0 ; j < 12 ; j++){ %>
+            <div class="month">
+                <%= currYear + parseInt(( currMonth + j )/13) %>年
+                    <%= ( currMonth + j )%12||12 %>月
+            </div>
+            <div class="days">
+                <% for(var i = 1 ; i <= currDays(currYear + parseInt(( currMonth + j )/13),( currMonth + j )%12||12) ; i++){ %>
+                    <div class="days-item <% if( i < currDay && currMonth == (( currMonth + j )%12||12) ){ %>disable<% } %> <% if(checkStart(currYear + parseInt(( currMonth + j )/13),( currMonth + j )%12||12,i,startTime)){ %> start <% } %> <% if(checkEnd(currYear + parseInt(( currMonth + j )/13),( currMonth + j )%12||12,i,endTime)){ %> end <% } %>" <% if(i==1 ){ %> style="padding-left: calc(100% *
+                        <%= fisrtWeek(currYear + parseInt(( currMonth + j )/13),( currMonth + j )%12||12) %>/7)"
+                            <%} %> >
+                                <% if ( i == currDay && currMonth == (( currMonth + j )%12||12) ){ %>
+                                    <span class="day" style="font-size: 0.28rem;" data-time="<%= formatTime(currYear + parseInt(( currMonth + j )/13),( currMonth + j )%12||12,i) %>">今天</span>
+                                    <% }else{ %>
+                                        <span class="day" data-time="<%= formatTime(currYear + parseInt(( currMonth + j )/13),( currMonth + j )%12||12,i ) %>"><%= i %></span>
+                                        <%} %>
+                    </div>
+                    <% } %>
+            </div>
+            <% } %>
+    </div>
 </div>

@@ -1,10 +1,73 @@
-.time-box{
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	z-index: 9999;
-	background-color: #fff555;
-	top: 100%;
-	transition: all 0.5s ease-in-out;
-	animation-fill-mode: both;
+.time-box {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 100%;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    animation-fill-mode: both;
+
+    .weeks {
+        position: absolute;
+        top: 0.9rem;
+        width: 100%;
+        display: table;
+        background-color: #f2f3f5;
+        font-size: 0.28rem;
+
+        .weeks-item {
+            width: 1%;
+            display: table-cell;
+            padding: 0.2rem 0;
+            text-align: center;
+        }
+        .weeks-item:first-child {
+            color: #FF9800;
+        }
+        .weeks-item:last-child {
+            color: #FF9800;
+        }
+    }
+    .month-box {
+        position: absolute;
+        top: 1.7rem;
+        height: calc(100% - 1.7rem);
+        overflow: auto;
+        width: 100%;
+
+        .month {
+            width: 100%;
+            padding: .2rem 0;
+            text-align: center;
+            font-size: 0.32rem;
+        }
+        .days {
+            width: 100%;
+            overflow: hidden;
+            .days-item {
+                width: calc(100% * (1/7));
+                float: left;
+                text-align: center;
+                span.day {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                span.day:after {
+                    content: "";
+                    padding-bottom: 100%;
+                }
+            }
+            .days-item.disable{
+                color: #ccc;
+            }
+            .days-item.start{
+                background-color: #00BCD4;
+            }
+            .days-item.end{
+                background-color: #F44336;
+            }
+        }
+    }
 }
