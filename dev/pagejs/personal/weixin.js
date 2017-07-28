@@ -9,6 +9,7 @@
     artTemplate.loadTemplate("", "personal/weixin", {
         baseUrl: tools.getProjectPath()
     });
+    $("#personal-weixin .box-img img").attr("src",requestParam["logoUrl"] || "./dist/images/default.png");
     /**
      * 提交表单
      */
@@ -20,7 +21,7 @@
     /**
      * 获取验证码--点击
      */
-    $("body").off("click", "span.identifying-code:not(.disable)").on("click", "span.identifying-code:not(.disable)", function() {
+    $("body").off("click", "#personal-weixin span.identifying-code:not(.disable)").on("click", "#personal-weixin span.identifying-code:not(.disable)", function() {
         var _this = this;
         var telNum = $("input[data-descriptions='phone']").val();
         if (!telNum) {

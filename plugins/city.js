@@ -296,5 +296,14 @@ var City = {
         { "id": "296", "three": "ZYI", "airPlaneName": "遵义机场", "cityName": "遵义", "englishName": "ZUNYI", "group": "Z" },
         { "id": "297", "three": "ZYW", "airPlaneName": "招远机场", "cityName": "招远", "englishName": "ZHAOYUAN", "group": "Z" },
         { "id": "298", "three": "ZZW", "airPlaneName": "漳州机场", "cityName": "漳州", "englishName": "ZHANGZHOU", "group": "Z" }
-    ]
+    ],
+    getObjByCityNmae:function(cityName){
+        var _this = this;
+        for (var i = _this.domestic.length - 1; i >= 0; i--) {
+            if(_this.domestic[i].cityName === cityName){
+                return _this.domestic[i];
+            }
+        }
+        return null;
+    }
 }

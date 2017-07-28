@@ -1,7 +1,7 @@
 ;
 var hf = (function() {
     var _ignore_back = ["#order/order", "#flight/flight", "#personal/personal"];
-    var _init_url = ["#base/404", "#base/500", "#personal/weixin","#personal/weixin-bound"];
+    var _init_url = ["#base/404", "#base/500", "#personal/weixin", "#personal/weixin-bound"];
     var _click = 0;
 
     return {
@@ -26,6 +26,7 @@ var hf = (function() {
                 });
                 _self.loadEven();
                 _self.dropload();
+                _self.initWeixin();
             }, false);
         },
         /**
@@ -131,6 +132,8 @@ var hf = (function() {
                 },
                 loadDownFn: ''
             });
+        },
+        initWeixin: function() {
         }
     }
 })();

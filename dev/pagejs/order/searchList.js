@@ -12,7 +12,7 @@
     var endTime = hf.appParam.orderSearchParam.endTime; // 返回时间
     var currTime = tools.formatTime(new Date(),"yyyy-MM-dd"); // 当前时间
     
-
+    
     if(startTime === currTime){
     	console.info(true);
     }

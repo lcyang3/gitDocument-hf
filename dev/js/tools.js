@@ -99,6 +99,11 @@ var tools = {
     },
     getProjectPath : function(){
         return "/huafei/";
+    },
+    setLocalStorage: function(key,value){
+        localStorage.setItem(key,JSON.stringify(value));
+    },
+    getLocalStorage: function(key){
+        return JSON.parse(localStorage.getItem(key));
     }
-
 }

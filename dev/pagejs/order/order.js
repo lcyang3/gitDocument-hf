@@ -5,6 +5,7 @@
     $("header .header-left").addClass("hidden"); // 隐藏返回按钮
     $("footer.index-list").removeClass("hidden"); //底部菜单显示
     $("footer.searchList").addClass("hidden"); // 隐藏搜索页面底部
+    var _history = tools.getLocalStorage("history") || []; // 获取历史访问地点
     animate.animateText($("header span.title"), "订票、退票/改签", "fadeIn");
     artTemplate.loadTemplate("", "order/order", {}); //初始化页面内容
     /**
@@ -68,6 +69,14 @@
     $("input[data-ele='input'][data-type='time'][data-id='startTime']").val(tools.formatTime(startTime, "yyyy年M月dd日"));
     $("input[data-ele='input'][data-type='time'][data-id='startTime']").attr("data-time", tools.formatTime(startTime, "yyyy-MM-dd"));
     // 初始化出发时间 end
+    //  初始化地点 - 默认为最近访问的地点
+    $("input[data-id='startAddress']").val(!!_history[0] ? _history[0].cityName : "");
+    $("input[data-id='startAddress']").attr("data-cityName", !!_history[0] ? _history[0].cityName : "");
+    $("input[data-id='startAddress']").attr("data-three", !!_history[0] ? _history[0].three : "");
+    $("input[data-id='endAddress']").val(!!_history[1] ? _history[1].cityName : "");
+    $("input[data-id='endAddress']").attr("data-cityName", !!_history[1] ? _history[1].cityName : "");
+    $("input[data-id='endAddress']").attr("data-three", !!_history[1] ? _history[1].three : "");
+    //  初始化地点 - 默认为最近访问的地点
     /**
      * 打开时间选择页
      */
@@ -107,12 +116,46 @@
         var _self = this;
         var _id = "order-addressbox";
         var _data_id = $(this).attr("data-id");
+        _history = tools.getLocalStorage("history") || []; // 获取历史访问地点
         $("body").append(template("base/address", {
             id: _id,
             _data_id: _data_id,
-            gps: "广州",
-            history: ["北京","上海","广州","长沙"],
-            hot: ["北京","上海","广州","长沙"],
+            gps: City.getObjByCityNmae("广州"),
+            history: _history,
+            hot: [{
+                cityName: "北京",
+                three: "PEK"
+            }, {
+                cityName: "上海",
+                three: "SHA"
+            }, {
+                cityName: "广州",
+                three: "CAN"
+            }, {
+                cityName: "杭州",
+                three: "HGH"
+            }, {
+                cityName: "长沙",
+                three: "CSX"
+            }, {
+                cityName: "南宁",
+                three: "NNG"
+            }, {
+                cityName: "成都",
+                three: "CTU"
+            }, {
+                cityName: "武汉",
+                three: "WUH"
+            }, {
+                cityName: "南昌",
+                three: "KHN"
+            }, {
+                cityName: "沈阳",
+                three: "SHE"
+            }, {
+                cityName: "天津",
+                three: "TSN"
+            }],
             _city_domestic: City.domestic,
             _city_international: City.international
         }));
@@ -129,6 +172,17 @@
         setTimeout(function() {
             $(_self).remove();
         }, 300);
+    });
+
+    /**
+     * 地点选择-右边导航事件
+     */
+    $("body").off("click", "#order-addressbox .address-catalog .address-catalog-item").on("click", "#order-addressbox .address-catalog .address-catalog-item", function() {
+        var container = $('.main'),
+            scrollTo = $("#order-addressbox .main div[data-target='" + $(this).attr("data-target") + "']");
+        container.scrollTop(
+            scrollTo.offset().top - container.offset().top + container.scrollTop()
+        );
     });
 
 
@@ -180,7 +234,49 @@
         }, 300);
     });
 
+    /**
+     * 选取地点
+     */
+    $("body").off("click", "#order-addressbox .main .currAddress .text,##order-addressbox .address-item-box .item,#order-addressbox .list .list-li").on("click", "#order-addressbox .main .currAddress .text,#order-addressbox .address-item-box .item,#order-addressbox .list .list-li", function() {
+        var _cityName = $(this).attr("data-cityName");
+        var _three = $(this).attr("data-three");
+        var _history = tools.getLocalStorage("history") || [];
+        var _parent = $(this).parents(".address-box");
+        _history = _history.slice(0, 5);
+        for (var k = 0; k < _history.length; k++) {
+            if (_history[k].cityName == _cityName) {
+                var temp = _history.slice(0, k);
+                _history = temp.concat(_history.slice(k + 1));
+            }
+        }
+        _history.unshift(City.getObjByCityNmae(_cityName));
+        tools.setLocalStorage("history", _history);
+        $("input[data-id='" + _parent.attr("data-type") + "']").val(_cityName);
+        $("input[data-id='" + _parent.attr("data-type") + "']").attr("data-cityName", _cityName);
+        $("input[data-id='" + _parent.attr("data-type") + "']").attr("data-three", _three);
+        _parent.css("top", "100%");
+        setTimeout(function() {
+            $(_parent).remove();
+        }, 300);
+    });
+
+    /**
+     * 地点切换
+     */
+    $("body").off("click", "#order .tab-content .address .icon-wangfan").on("click", "#order .tab-content .address .icon-wangfan", function() {
+        var _temp_cityName = $("input[data-id='startAddress']").val();
+        var _temp_three = $("input[data-id='startAddress']").attr("data-three");
+
+
+        $("input[data-id='startAddress']").attr("data-cityName", $("input[data-id='endAddress']").attr("data-cityName"));
+        $("input[data-id='startAddress']").attr("data-three", $("input[data-id='endAddress']").attr("data-three"));
+        $("input[data-id='startAddress']").val($("input[data-id='endAddress']").val());
+
+        $("input[data-id='endAddress']").val(_temp_cityName);
+        $("input[data-id='endAddress']").attr("data-cityName", _temp_cityName);
+        $("input[data-id='endAddress']").attr("data-three", _temp_three);
+    });
+
     hf.appParam.orderCurrItem = _default_content; //保存当前选项夹
-    if (!hf.appConfig.loading) { _order_loading.close(); }
-    hf.appConfig.loading.close();
+    if (!hf.appConfig.loading) { _order_loading.close(); } hf.appConfig.loading.close();
 })(hf);

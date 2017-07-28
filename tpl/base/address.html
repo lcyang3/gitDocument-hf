@@ -8,50 +8,56 @@
                 <% } %>
     </header>
     <div class="address-catalog">
-        <P class="address-catalog-item" data-target="GPS">
+        <P class="address-catalog-item" data-target="currAddress">
             当前
         </P>
-        <P class="address-catalog-item" data-target="history">
-            历史
-        </P>
-        <P class="address-catalog-item" data-target="hot">
-            热门
-        </P>
-        <% 
-            var _letter_array = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-            for(var i = 0 ; i < 29; i++ ){ %>
-            <P class="address-catalog-item" id="<%= _letter_array[i] %>">
-                <%= _letter_array[i] %>
+        <%if(!!history.length){%>
+            <P class="address-catalog-item" data-target="history">
+                历史
             </P>
-            <% } %>
+            <%}%>
+                <P class="address-catalog-item" data-target="hot">
+                    热门
+                </P>
+                <% 
+            var _letter_array = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            for(var i = 0 ; i < 26; i++ ){ %>
+                    <P class="address-catalog-item" data-target="<%= _letter_array[i] %>">
+                        <%= _letter_array[i] %>
+                    </P>
+                    <% } %>
     </div>
-    <div class="main" data-target="GPS">
-        <div class="currAddress" id="currAddress">
-            <span class="text"><%= gps %></span><span class="type">GPS定位</span>
+    <div class="main">
+        <div class="currAddress" data-target="currAddress">
+            <p><span class="text" data-cityName="<%= gps.cityName %>" data-three="<%= gps.three %>"><%= gps.cityName %></span><span class="type">GPS定位</span></p>
         </div>
+        <%if(!!history.length){%>
         <div class="address-item-box history" data-target="history">
+            <p>历史选择</p>
             <%for(var i = 0; i< history.length; i++){%>
-                <div class="history-item">
-                    <%= history[i] %>
+                <div class="item history-item" data-cityName="<%= history[i].cityName %>" data-three="<%= history[i].three %>">
+                    <%= history[i].cityName %>
                 </div>
                 <%}%>
         </div>
+        <%}%>
         <div class="address-item-box hot" data-target="hot">
+            <p>热门城市</p>
             <%for(var i = 0; i< hot.length; i++){%>
-                <div class="hot-item">
-                    <%= hot[i] %>
+                <div class="item hot-item" data-cityName="<%= hot[i].cityName %>" data-three="<%= hot[i].three %>">
+                    <%= hot[i].cityName %>
                 </div>
                 <%}%>
         </div>
         <div class="list">
             <% for(var i = 0; i< _letter_array.length; i++){ %>
-                <div class="address-item-li" data-target="<%= _letter_array[i]%> ">
+                <div class="address-item-li" data-target="<%= _letter_array[i]%>">
                     <p>
                         <%= _letter_array[i]%>
                     </p>
                     <% for(var j = 0 ; j < _city_domestic.length; j++){
                     if(_city_domestic[j].group == _letter_array[i]){%>
-                        <div class="list-li">
+                        <div class="list-li" data-cityName="<%= _city_domestic[j].cityName %>" data-three="<%= _city_domestic[j].three %>">
                             <%= _city_domestic[j].cityName %>
                         </div>
                         <% }} %>
